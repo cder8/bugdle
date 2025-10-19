@@ -73,7 +73,7 @@ async function submitFix() {
 
         // Show message
         if (data.status === "partial") {
-            resultDiv.innerHTML = `🟡 Almost there! Check line ${data.fix_line || "?"}.<br><br>${data.error || ""}`;
+            resultDiv.innerHTML = `🟡 Almost there! Check line ${data.fix_line + 1 || "?"}.<br><br>${data.error || ""}`;
             resultDiv.style.color = "#e3b341";
         } else {
             resultDiv.innerText = "❌ " + (data.error || "Try again!");
