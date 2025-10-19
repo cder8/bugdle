@@ -1,0 +1,12 @@
+{
+    "id": 9,
+    "title": "Merge Dictionaries",
+    "description": "Merge two dictionaries but the code doesn\u2019t work correctly.",
+    "snippet": "def merge_dicts(a, b):\n    for k in a:\n        b[k] = a[k]\n    return b",
+    "fix_line": 3,
+    "tests": [
+        "assert merge_dicts({'x':1},{'y':2}) == {'x':1,'y':2}"
+    ],
+    "difficulty": "Medium",
+    "explanation": "Iterating over `a` and assigning to `b` works, but it's safer to return a new dict or update `b` correctly."
+}

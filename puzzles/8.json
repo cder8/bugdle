@@ -1,0 +1,13 @@
+{
+    "id": 8,
+    "title": "Remove Duplicates",
+    "description": "Remove duplicates from a list, but the result has a bug.",
+    "snippet": "def remove_duplicates(lst):\n    res = []\n    for x in lst:\n        if x in res:\n            res.append(x)\n    return res",
+    "fix_line": 3,
+    "tests": [
+        "assert remove_duplicates([1,2,2,3]) == [1,2,3]",
+        "assert remove_duplicates([]) == []"
+    ],
+    "difficulty": "Medium",
+    "explanation": "The condition is inverted. It should be `if x not in res`."
+}

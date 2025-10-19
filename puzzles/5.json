@@ -1,0 +1,14 @@
+{
+    "id": 5,
+    "title": "Count Vowels",
+    "description": "Count the number of vowels in a string, but there\u2019s a bug.",
+    "snippet": "def count_vowels(s):\n    vowels = 'aeiou'\n    count = 0\n    for c in s:\n        if c in vowels.upper():\n            count += 1\n    return count",
+    "fix_line": 4,
+    "tests": [
+        "assert count_vowels('hello') == 2",
+        "assert count_vowels('HELLO') == 2",
+        "assert count_vowels('xyz') == 0"
+    ],
+    "difficulty": "Easy",
+    "explanation": "The check is against `vowels.upper()` only, missing lowercase letters."
+}

@@ -1,0 +1,12 @@
+{
+    "id": 10,
+    "title": "List Flatten",
+    "description": "Flatten a list of lists, but the code has a bug.",
+    "snippet": "def flatten(lst):\n    res = []\n    for l in lst:\n        res.append(l)\n    return res",
+    "fix_line": 3,
+    "tests": [
+        "assert flatten([[1,2],[3,4]]) == [1,2,3,4]"
+    ],
+    "difficulty": "Medium",
+    "explanation": "You need to extend the result, not append each sublist: `res.extend(l)`."
+}

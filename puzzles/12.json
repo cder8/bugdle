@@ -1,0 +1,12 @@
+{
+    "id": 12,
+    "title": "String Repeat",
+    "description": "Repeat a string n times, but it\u2019s buggy.",
+    "snippet": "def repeat(s,n):\n    return s*n-1",
+    "fix_line": 1,
+    "tests": [
+        "assert repeat('a',3) == 'aaa'"
+    ],
+    "difficulty": "Easy",
+    "explanation": "Subtracting 1 is wrong; just use `s*n`."
+}

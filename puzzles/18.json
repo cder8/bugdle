@@ -1,0 +1,12 @@
+{
+    "id": 18,
+    "title": "Power Function",
+    "description": "Compute x to the power n, buggy implementation.",
+    "snippet": "def power(x,n):\n    result = 0\n    for i in range(n):\n        result *= x\n    return result",
+    "fix_line": 1,
+    "tests": [
+        "assert power(2,3) == 8"
+    ],
+    "difficulty": "Medium",
+    "explanation": "Initialize `result=1` instead of 0; multiplication works correctly then."
+}

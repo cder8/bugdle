@@ -1,0 +1,12 @@
+{
+    "id": 11,
+    "title": "Dictionary Keys",
+    "description": "Return keys of a dictionary, but the code is wrong.",
+    "snippet": "def dict_keys(d):\n    return d.values()",
+    "fix_line": 1,
+    "tests": [
+        "assert dict_keys({'a':1,'b':2}) == ['a','b']"
+    ],
+    "difficulty": "Easy",
+    "explanation": "Should return `d.keys()` instead of `d.values()`."
+}

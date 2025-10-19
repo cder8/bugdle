@@ -1,0 +1,14 @@
+{
+    "id": 4,
+    "title": "Reverse String",
+    "description": "The function should reverse a string but has a subtle bug.",
+    "snippet": "def reverse_string(s):\n    result = ''\n    for i in range(len(s)):\n        result += s[i]\n    return result",
+    "fix_line": 3,
+    "tests": [
+        "assert reverse_string('abc') == 'cba'",
+        "assert reverse_string('') == ''",
+        "assert reverse_string('hello') == 'olleh'"
+    ],
+    "difficulty": "Easy",
+    "explanation": "It should use `s[len(s)-1-i]` or `reversed(s)`; currently it returns the original string."
+}

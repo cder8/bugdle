@@ -1,0 +1,14 @@
+{
+    "id": 6,
+    "title": "Fibonacci",
+    "description": "Return the nth Fibonacci number, but the implementation is off.",
+    "snippet": "def fib(n):\n    if n == 0:\n        return 0\n    if n == 1:\n        return 1\n    return fib(n-1) + fib(n-2) + 1",
+    "fix_line": 5,
+    "tests": [
+        "assert fib(0) == 0",
+        "assert fib(1) == 1",
+        "assert fib(5) == 5"
+    ],
+    "difficulty": "Medium",
+    "explanation": "The `+1` is wrong; remove it to get the correct Fibonacci sequence."
+}

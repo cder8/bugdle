@@ -1,0 +1,12 @@
+{
+    "id": 17,
+    "title": "List Index",
+    "description": "Return the index of an element, buggy code.",
+    "snippet": "def find_index(lst, x):\n    for i, val in enumerate(lst):\n        if val == x:\n            return i+1\n    return -1",
+    "fix_line": 3,
+    "tests": [
+        "assert find_index([10,20,30],20) == 1"
+    ],
+    "difficulty": "Easy",
+    "explanation": "Should return `i`, not `i+1`."
+}

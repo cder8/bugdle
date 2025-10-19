@@ -1,0 +1,12 @@
+{
+    "id": 14,
+    "title": "Filter Negative",
+    "description": "Remove negative numbers but the code is buggy.",
+    "snippet": "def filter_neg(lst):\n    return [x for x in lst if x>0]",
+    "fix_line": 1,
+    "tests": [
+        "assert filter_neg([-1,0,1,2]) == [0,1,2]"
+    ],
+    "difficulty": "Medium",
+    "explanation": "The comparison misses zero; should be `x >= 0`."
+}

@@ -1,0 +1,12 @@
+{
+    "id": 13,
+    "title": "Square Numbers",
+    "description": "Return a list of squares but there\u2019s a bug.",
+    "snippet": "def squares(lst):\n    return [x*2 for x in lst]",
+    "fix_line": 1,
+    "tests": [
+        "assert squares([1,2,3]) == [1,4,9]"
+    ],
+    "difficulty": "Medium",
+    "explanation": "Should be `x**2` instead of `x*2`."
+}

@@ -1,0 +1,12 @@
+{
+    "id": 15,
+    "title": "Capitalize Words",
+    "description": "Capitalize words in a sentence but the code fails.",
+    "snippet": "def capitalize_words(s):\n    return ' '.join([w.lower() for w in s.split()])",
+    "fix_line": 1,
+    "tests": [
+        "assert capitalize_words('hello world') == 'Hello World'"
+    ],
+    "difficulty": "Easy",
+    "explanation": "You are lowercasing instead of capitalizing: use `w.capitalize()`."
+}

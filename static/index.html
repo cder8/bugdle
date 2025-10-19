@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Bugdle 🐛</title>
+
+    <!-- CodeMirror CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/theme/dracula.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/dark.css"> <!-- dark theme -->
+
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            /* horizontal centering */
+            align-items: center;
+            /* vertical centering */
+            background: #0d1117;
+            color: #c9d1d9;
+            font-family: monospace;
+            font-size: 18px;
+        }
+
+        #container {
+            width: 80%;
+            max-width: 800px;
+            text-align: center;
+            align-items: center;
+        }
+
+        h1 {
+            color: #58a6ff;
+        }
+
+        /* Editor container */
+        #editor {
+            width: 100%;
+            height: 250px;
+            border: 1px solid #30363d;
+            background: #161b22;
+            color: #c9d1d9;
+            font-family: monospace;
+            text-align: left;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            /* include padding/border in width */
+            overflow: hidden;
+            /* hide outer horizontal scroll */
+        }
+
+        /* CodeMirror internal editor */
+        .CodeMirror {
+            height: 100%;
+            width: 100%;
+            overflow: auto;
+            /* internal scroll only */
+        }
+
+        /* Hide unnecessary scrollbars */
+        .CodeMirror-scroll {
+            overflow: overlay;
+            /* only show scroll when needed */
+        }
+
+        .CodeMirror .highlight-line {
+            background-color: rgba(255, 215, 0, 0.3);
+            /* soft yellow */
+            transition: background-color 0.4s ease;
+        }
+
+        button {
+            margin: 10px 5px;
+            padding: 10px 20px;
+            background: #238636;
+            border: none;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #result {
+            margin-top: 20px;
+            white-space: pre-wrap;
+        }
+
+        pre {
+            color: #c9d1d9;
+        }
+
+        #calendar-container {
+            margin: 15px 0;
+            text-align: center;
+            width: fit-content;
+        }
+
+        #puzzle-date {
+            padding: 8px 12px;
+            font-size: 1em;
+            border-radius: 5px;
+            border: 1px solid #30363d;
+            background: #161b22;
+            color: #c9d1d9;
+        }
+
+        /* Calendar container */
+        .flatpickr-calendar {
+            background: transparent !important;
+
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            color: #c9d1d9;
+            font-family: monospace;
+        }
+
+        /* Month/year header container */
+        .flatpickr-months,
+        .flatpickr-weekdays {
+            background: transparent !important;
+        }
+
+        /* Individual month container and navigation */
+        .flatpickr-month {
+            background: transparent !important;
+            color: #58a6ff !important;
+        }
+
+        .flatpickr-prev-month,
+        .flatpickr-next-month {
+            background: transparent !important;
+            color: #c9d1d9 !important;
+            border: none;
+        }
+
+        /* Weekday labels */
+        .flatpickr-weekday {
+            background: transparent !important;
+            color: #c9d1d9 !important;
+        }
+
+        /* Days grid */
+        .flatpickr-day {
+            background: transparent !important;
+            color: #c9d1d9 !important;
+            border-radius: 5px;
+            transition: all 0.2s;
+        }
+
+        .flatpickr-day.prevMonthDay,
+        .flatpickr-day.nextMonthDay {
+            opacity: 0.2;
+            /* low opacity, adjust as needed */
+            color: #c9d1d9 !important;
+            background: transparent !important;
+            cursor: default;
+        }
+
+        .flatpickr-day.prevMonthDay:hover,
+        .flatpickr-day.nextMonthDay:hover {
+            background: transparent !important;
+        }
+
+        /* Hovered day */
+        .flatpickr-day:hover {
+            background: #21262d !important;
+            cursor: pointer;
+        }
+
+        /* Today highlight */
+        .flatpickr-day.today {
+            background: #238636 !important;
+            color: white !important;
+            font-weight: bold;
+        }
+
+        /* Selected day */
+        .flatpickr-day.selected {
+            background: #58a6ff !important;
+            color: white !important;
+            font-weight: bold;
+        }
+
+        /* Disabled/future days */
+        .flatpickr-day.disabled {
+            color: #6e7681 !important;
+            background: transparent !important;
+            cursor: not-allowed;
+        }
+
+        #feedback-wrapper {
+            display: flex;
+            flex-direction: column;
+            /* stack result then calendar */
+            align-items: center;
+            /* horizontal centering relative to wrapper */
+            margin-top: 20px;
+            /* spacing from buttons/editor */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <h1>🐍 Bugdle - Daily Bug Fixing Puzzle</h1>
+        <p id="desc"></p>
+        <pre id="snippet"></pre>
+        <div id="editor"></div>
+        <p id="difficulty"></p>
+        <button id="submitBtn">Submit Fix</button>
+        <button id="randomBtn">Random Puzzle</button>
+        <div id="feedback-wrapper">
+            <div id="result"></div>
+            <div id="calendar-container"></div>
+        </div>
+    </div>
+
+    <!-- CodeMirror JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/python/python.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <!-- Your script -->
+    <script src="/static/script.js"></script>
+</body>
+
+</html>

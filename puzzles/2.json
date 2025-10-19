@@ -1,0 +1,14 @@
+{
+    "id": 2,
+    "title": "Find Maximum",
+    "description": "Fix the function to correctly find the maximum number in a list.",
+    "snippet": "def find_max(nums):\n    max_val = nums[0]\n    for n in nums:\n        if n < max_val:\n            max_val = n\n    return max_val",
+    "fix_line": 3,
+    "tests": [
+        "assert find_max([3, 5, 2, 9, 1]) == 9",
+        "assert find_max([-1, -5, -3]) == -1",
+        "assert find_max([7]) == 7"
+    ],
+    "difficulty": "Medium",
+    "explanation": "The comparison is backwards: use `>` instead of `<` to find the max."
+}

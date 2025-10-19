@@ -1,0 +1,14 @@
+{
+    "id": 7,
+    "title": "Palindrome Check",
+    "description": "Check if a string is a palindrome, but there\u2019s a subtle bug.",
+    "snippet": "def is_palindrome(s):\n    return s == s[::-1].lower()",
+    "fix_line": 1,
+    "tests": [
+        "assert is_palindrome('racecar') == True",
+        "assert is_palindrome('Racecar') == True",
+        "assert is_palindrome('hello') == False"
+    ],
+    "difficulty": "Easy",
+    "explanation": "You\u2019re only lowercasing the reversed string. You should lowercase both strings before comparing."
+}

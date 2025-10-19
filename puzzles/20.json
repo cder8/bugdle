@@ -1,0 +1,12 @@
+{
+    "id": 20,
+    "title": "List Rotation",
+    "description": "Rotate a list to the right by n, buggy code.",
+    "snippet": "def rotate(lst,n):\n    return lst[n:] + lst[:n]",
+    "fix_line": 1,
+    "tests": [
+        "assert rotate([1,2,3,4],1) == [4,1,2,3]"
+    ],
+    "difficulty": "Medium",
+    "explanation": "The slicing is reversed; should use `lst[-n:] + lst[:-n]`."
+}
